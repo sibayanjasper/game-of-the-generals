@@ -1,5 +1,6 @@
 This is a [meteor](http://meteor.com) implementation of Game of the Generals, a Filipino board game invented by Sofronio H. Pasola, Jr. in 1970.
 
+[![Code Climate](https://codeclimate.com/github/lemonkoala/game-of-the-generals.png)](https://codeclimate.com/github/lemonkoala/game-of-the-generals)
 
 Getting Started
 ===============
