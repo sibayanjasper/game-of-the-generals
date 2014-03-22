@@ -1,10 +1,14 @@
-Template.game_board.created = function() {
-  jDraggedPiece = null;
-  draggedPieceSource = null;
+// without this, the last player to set up pieces will not see the board update
+// when the game begins. so he won't see opponent pieces during the first move.
+var ctrlChangedDep = new Deps.Dependency();
 
+var jDraggedPiece, draggedPieceSource;
+
+Template.game_board.created = function() {
   Deps.autorun(function() {
     if (CurrentGame) {
       if (CurrentGame.get('isUserDonePositioning')) {
+        ctrlChangedDep.changed();
         boardController = new PlayingBoard();
       } else {
         boardController = positionBoard;
@@ -58,6 +62,7 @@ Template.game_board.helpers({
   },
 
   piece: function() {
+    ctrlChangedDep.depend();
     return boardController.pieceAt(this.coord);
   },
 
