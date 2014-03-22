@@ -1,7 +1,7 @@
 Template.user_info.helpers({
   gravatar_url: function() {
     var mail = Meteor.user().emails ? Meteor.user().emails[0].address : "none";
-    var hash = md5(mail.trim().toLowerCase());
+    var hash = CryptoJS.MD5(mail.trim().toLowerCase()).toString();
     var head = "http://www.gravatar.com/avatar/";
     var tail = "?d=retro&s=150";
     return head + hash + tail;

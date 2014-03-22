@@ -9,3 +9,4 @@ preserve-inputs
 standard-app-packages
 iron-router
 less
+crypto-md5
