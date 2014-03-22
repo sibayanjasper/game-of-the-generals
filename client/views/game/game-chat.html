@@ -1,0 +1,15 @@
+<template name="game_chat">
+  <div class="well">
+    <div class="game-messages">
+      {{#each messages}}
+      <div class="game-message">
+        <span>{{sender}}</span>
+        <p>{{message}}</p>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <input id="game-input-message" class="form-control"
+           type="text" placeholder="Your message" />
+</template>

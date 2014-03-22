@@ -1,0 +1,65 @@
+<template name="game_info">
+  <h4>{{opponentName}}</h4>
+
+  <dl class="dl-horizontal">
+    <dt>Pieces Left</dt>
+    <dd>{{numOpponentPiecesLeft}} / 21</dd>
+  </dl>
+
+  <hr />
+
+  <h4>{{currentUser.username}}</h4>
+
+  <dl class="dl-horizontal">
+    <dt>Pieces Left</dt>
+    <dd>{{numPlayerPiecesLeft}} / 21</dd>
+  </dl>
+
+  <dl class="dl-horizontal">
+    <dt>5 Star General</dt>
+    <dd class="{{pieceTextColor 15}}">{{pieceCount 15}} / 1</dd>
+
+    <dt>4 Star General</dt>
+    <dd class="{{pieceTextColor 14}}">{{pieceCount 14}} / 1</dd>
+
+    <dt>3 Star General</dt>
+    <dd class="{{pieceTextColor 13}}">{{pieceCount 13}} / 1</dd>
+
+    <dt>2 Star General</dt>
+    <dd class="{{pieceTextColor 12}}">{{pieceCount 12}} / 1</dd>
+
+    <dt>1 Star General</dt>
+    <dd class="{{pieceTextColor 11}}">{{pieceCount 11}} / 1</dd>
+
+    <dt>Colonel</dt>
+    <dd class="{{pieceTextColor 10}}">{{pieceCount 10}} / 1</dd>
+
+    <dt>Lt. Colonel</dt>
+    <dd class="{{pieceTextColor 9}}">{{pieceCount  9}} / 1</dd>
+
+    <dt>Major</dt>
+    <dd class="{{pieceTextColor 8}}">{{pieceCount  8}} / 1</dd>
+
+    <dt>Captain</dt>
+    <dd class="{{pieceTextColor 7}}">{{pieceCount  7}} / 1</dd>
+
+    <dt>1st Lieutenant</dt>
+    <dd class="{{pieceTextColor 6}}">{{pieceCount  6}} / 1</dd>
+
+    <dt>2nd Lieutenant</dt>
+    <dd class="{{pieceTextColor 5}}">{{pieceCount  5}} / 1</dd>
+
+    <dt>Sergeant</dt>
+    <dd class="{{pieceTextColor 4}}">{{pieceCount  4}} / 1</dd>
+
+    <dt>Private</dt>
+    <dd class="{{pieceTextColor 3}}">{{pieceCount  3}} / 6</dd>
+
+    <dt>Spy</dt>
+    <dd class="{{pieceTextColor 2}}">{{pieceCount  2}} / 2</dd>
+
+    <dt>Flag</dt>
+    <dd class="{{pieceTextColor 1}}">{{pieceCount  1}} / 1</dd>
+  </dl>
+
+</template>

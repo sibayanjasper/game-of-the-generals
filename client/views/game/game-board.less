@@ -1,0 +1,54 @@
+.gg-clearfix {
+  clear: both;
+}
+
+.gg-board {
+  width: 441px;
+
+  border: 2px solid #6082B6;
+  margin: 0 auto;
+
+  -moz-box-sizing: content-box;
+       box-sizing: content-box;
+
+  .gg-square {
+    width:  49px;
+    height: 49px;
+
+    border: 1px solid #6082B6;
+    background-color: #008080;
+
+    float: left;
+    position: relative;
+
+    /* disable any native browser highlighting */
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+
+    &.gg-highlight {
+      -webkit-box-shadow: inset 0 0 3px 3px yellow;
+         -moz-box-shadow: inset 0 0 3px 3px yellow;
+              box-shadow: inset 0 0 3px 3px yellow;
+    }
+
+    &.gg-obscure {
+      background-color: #8B8589;
+    }
+
+    .gg-piece {
+      width:  49px;
+      height: 49px;
+    }
+  }
+}
+
+.gg-piece.gg-dragged {
+  width:  49px;
+  height: 49px;
+  position: fixed;
+  z-index: 100;
+}

@@ -1,0 +1,147 @@
+<template name="main">
+  <div class="row">
+    <div class="col-md-2">
+      {{> user_info}}
+    </div>
+    <div class="col-md-5">
+      {{> online_players}}
+    </div>
+    <div class="col-md-5">
+      {{> rcvd_challenges}}
+      {{> sent_challenges}}
+    </div>
+  </div>
+</template>
+
+<template name="user_info">
+  <div class="user-info">
+    <a href="http://gravatar.com/emails" class="user-avatar">
+      <img class="avatar img-circle" src="{{gravatar_url}}" />
+    </a>
+
+    <h3 class="user-stuff">
+      <span class="user-name">{{currentUser.username}}</span>
+      <span class="user-logout">(<a id="logout" href="#">logout</a>)</span>
+    </h3>
+
+    <hr />
+
+    <div class="user-stats row">
+      <span class="user-stat col-xs-4" href="#">
+          <strong class="user-stat-count">
+            {{currentUser.game_stats.wins}}
+          </strong>
+          wins
+      </span>
+      <span class="user-stat col-xs-4" href="#">
+          <strong class="user-stat-count">
+            {{currentUser.game_stats.loses}}
+          </strong>
+          loses
+      </span>
+      <span class="user-stat col-xs-4" href="#">
+          <strong class="user-stat-count">
+            {{currentUser.game_stats.resigns}}
+          </strong>
+          resigns
+      </span>
+    </div>
+  </div>
+</template>
+
+<template name="main_nav_links">
+  <ul class="nav nav-pills nav-stacked">
+    <li class="active"><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+</template>
+
+<template name="online_players">
+  <table class="table table-hover table-bordered">
+    <caption>Online Players</caption>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Wins</th>
+        <th>Loses</th>
+        <th>Resigns</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each players}}
+      <tr>
+        <td>{{username}}</td>
+        <td>{{game_stats.wins}}</td>
+        <td>{{game_stats.loses}}</td>
+        <td>{{game_stats.resigns}}</td>
+        <td>
+          <button class="btn btn-default btn-xs" data-id="{{_id}}">
+            Challenge
+          </button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>
+
+<template name="rcvd_challenges">
+  <table class="table table-hover table-bordered">
+    <caption>Challenges Recieved</caption>
+    <thead>
+      <tr>
+        <th>Challenger</th>
+        <th>Wins</th>
+        <th>Loses</th>
+        <th>Resigns</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each players}}
+      <tr>
+        <td>{{username}}</td>
+        <td>{{game_stats.wins}}</td>
+        <td>{{game_stats.loses}}</td>
+        <td>{{game_stats.resigns}}</td>
+        <td>
+          <button class="btn btn-default btn-xs" data-id="{{_id}}">
+            Accept
+          </button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>
+
+<template name="sent_challenges">
+  <table class="table table-hover table-bordered">
+    <caption>Challenges Sent</caption>
+    <thead>
+      <tr>
+        <th>Challenged</th>
+        <th>Wins</th>
+        <th>Loses</th>
+        <th>Resigns</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each players}}
+      <tr>
+        <td>{{username}}</td>
+        <td>{{game_stats.wins}}</td>
+        <td>{{game_stats.loses}}</td>
+        <td>{{game_stats.resigns}}</td>
+        <td>
+          <button class="btn btn-default btn-xs" data-id="{{_id}}">
+            Recline
+          </button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>

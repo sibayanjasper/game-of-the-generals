@@ -1,0 +1,41 @@
+<template name="game">
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="row">
+        <div class="col-lg-4">
+          {{> game_info}}
+        </div>
+        <div class="col-lg-8">
+          <div class="row">
+            <p class="game-state text-primary text-center">{{stateMsg}}</p>
+          </div>
+          <div class="row">
+            {{> game_board}}
+          </div>
+          <div class="row">
+            <p class="game-notif text-danger text-center">{{notifMsg}}</p>
+          </div>
+          <div class="row">
+            <div class="game-buttons text-center">
+              {{#if showSetupButtons}}
+              <button id="btn-random" type="button" class="btn btn-default">Random</button>
+              <button id="btn-ready"  type="button" class="btn btn-default">Ready</button>
+              {{/if}}
+
+              {{#if showResignButton}}
+              <button id="btn-resign" type="button" class="btn btn-default">Resign</button>
+              {{/if}}
+
+              {{#if showLeaveButton}}
+              <button id="btn-leave"  type="button" class="btn btn-default">Leave Game</button>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      {{> game_chat}}
+    </div>
+  </div>
+</template>

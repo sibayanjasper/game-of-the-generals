@@ -1,0 +1,19 @@
+<template name="game_board">
+  <div class="gg-board">
+    {{#each rows}}
+    <div class="gg-row">
+      {{#each cols this}}
+      <div class="gg-square {{obscure}}" data-coord="{{coord}}" id="gg-square-{{coord}}">
+        {{#if piece}}
+        <img src="/images/pieces/{{piece}}.jpg" class="gg-piece" />
+        {{/if}}
+        {{#if lastMoveMarker}}
+        <img src="/images/pieces/{{lastMoveMarker}}.png" />
+        {{/if}}
+      </div>
+      {{/each}}
+      <div class="gg-clearfix"></div>
+    </div>
+    {{/each}}
+  </div>
+</template>

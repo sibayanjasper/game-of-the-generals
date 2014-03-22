@@ -1,0 +1,103 @@
+<template name="auth">
+  <div class="row">
+    <div class="col-lg-7">
+      {{> pitch}}
+    </div>
+    <div class="col-lg-5">
+      {{#if loggingIn}}
+        Logging in...
+      {{else}}
+        {{> auth_signin}}
+        {{> auth_register}}
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="pitch">
+  <img style="width: 100%;" src="http://placekitten.com/g/600/450" />
+  <div class="pitch">
+    <h3 class="tagline">Still a work in progress.</h3>
+    <h5 class="convince">
+      This isn't even open beta yet but glad to see you here.
+    </h5>
+  </div>
+</template>
+
+<template name="auth_signin">
+  <form id="signin-form" class="form-horizontal auth" role="form">
+    <fieldset>
+      <legend>Sign in</legend>
+
+      {{#if error_message}}
+        <div class="alert alert-danger">{{error_message}}</div>
+      {{/if}}
+
+      <div class="form-group">
+        <label for="signin-authname" class="col-sm-2 control-label">Username</label>
+        <div class="col-sm-10">
+          <input id="signin-authname" type="text" class="form-control" placeholder="Username or Email">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="signin-password" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input id="signin-password" class="form-control" type="password" placeholder="Password">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</template>
+
+<template name="auth_register">
+  <form id="register-form" class="form-horizontal auth" role="form">
+    <fieldset>
+      <legend>Register</legend>
+
+      {{#if error_message}}
+        <div class="alert alert-danger">{{error_message}}</div>
+      {{/if}}
+
+      <div class="form-group">
+        <label for="register-username" class="col-sm-2 control-label">Username</label>
+        <div class="col-sm-10">
+          <input id="register-username" type="text" class="form-control" placeholder="Username">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="register-emailadd" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <input id="register-emailadd" type="text" class="form-control" placeholder="Email (optional)">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="register-password" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input id="register-password" class="form-control" type="password" placeholder="Password">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="register-confirmp" class="col-sm-2 control-label">Confirm</label>
+        <div class="col-sm-10">
+          <input id="register-confirmp" class="form-control" type="password" placeholder="Confirm Password">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</template>
