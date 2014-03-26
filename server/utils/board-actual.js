@@ -24,6 +24,19 @@ _.extend(BoardActual.prototype, {
     return playerNum === 1 ? boardView : BoardUtils.flipBoard(boardView);
   },
 
+  getBoardRevealFor: function(playerNum) {
+    var boardReveal = {};
+    _.each(this._boardActual, function(pieceInfo, coordString) {
+      if (pieceInfo.owner === playerNum) {
+        boardReveal[coordString] = pieceInfo.piece;
+      } else {
+        boardReveal[coordString] = convertToRevealCode(pieceInfo.piece);
+      }
+    });
+
+    return playerNum === 1 ? boardReveal : BoardUtils.flipBoard(boardReveal);
+  },
+
   getWinCondition: function() {
     return new WinCondition(this._boardActual);
   },

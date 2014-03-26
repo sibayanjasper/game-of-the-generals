@@ -36,6 +36,9 @@ Meteor.methods({
       var winnerId = game.getPlayerIdFromNum(winCondition.getWinnerNum());
       updateValues.$set.winner = winnerId;
 
+      updateValues.$set.boardViews[game.p1] = boardActual.getBoardRevealFor(1);
+      updateValues.$set.boardViews[game.p2] = boardActual.getBoardRevealFor(2);
+
       var message = ArbiterMessages.getWinMessage(winCondition,
           game.getNameFromNum(1), game.getNameFromNum(2));
       updateValues.$push = {

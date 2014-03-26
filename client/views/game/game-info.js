@@ -17,9 +17,32 @@ Template.game_info.created = function() {
 
   getReactivePlayerPiecesCount = function() {
     dep.depend();
-    return _.reduce(pieceCounts, function(sum, count, pieceCode) {
-      return sum + (pieceCode === VIEW_PIECES.UNKNOWN.toString() ? 0 : count);
-    }, 0);
+    if (CurrentGame.get('isSettingUp')) {
+      return 21;
+    } else {
+      return _.reduce(pieceCounts, function(sum, count, pieceCode) {
+        if (pieceCode < 20) {
+          sum += count;
+        }
+        return sum;
+      }, 0);
+    }
+  };
+
+  getReactiveOpponentPiecesCounts = function() {
+    dep.depend();
+    if (CurrentGame.get('isSettingUp')) {
+      return 21;
+    } else if (CurrentGame.get('isPlaying')) {
+      return getReactivePieceCount(VIEW_PIECES.UNKNOWN);
+    } else if (CurrentGame.get('isDone')) {
+      return _.reduce(pieceCounts, function(sum, count, pieceCode) {
+        if (pieceCode >= 40) {
+          sum += count;
+        }
+        return sum;
+      }, 0);
+    }
   };
 };
 
@@ -29,13 +52,11 @@ Template.game_info.helpers({
   },
 
   numOpponentPiecesLeft: function() {
-    return CurrentGame.get('isSettingUp') ? 21 :
-        getReactivePieceCount(VIEW_PIECES.UNKNOWN);
+    return getReactiveOpponentPiecesCounts();
   },
 
   numPlayerPiecesLeft: function() {
-    return CurrentGame.get('isSettingUp') ? 21 :
-        getReactivePlayerPiecesCount();
+    return getReactivePlayerPiecesCount();
   },
 
   pieceCount: function(pieceCode) {
@@ -59,7 +80,3 @@ Template.game_info.helpers({
     return '';
   }
 });
-
-Template.game_info.rendered = function() {
-
-};

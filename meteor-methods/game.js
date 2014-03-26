@@ -44,10 +44,21 @@ Meteor.methods({
     Validations.validateGame(game);
     Validations.validateResignation(game);
 
-    OngoingGames.update(gameId, {
-      $set:  {winner: game.opponentId},
-      $push: {messages: ArbiterMessages.getPlayerResigned()}
-    });
+    var boardActual = new BoardActual(game.boardActual);
+
+    var updateValues = {
+      $set: {
+        winner: game.opponentId,
+        boardViews: {}
+      },
+      $push: {
+        messages: ArbiterMessages.getPlayerResigned()
+      }
+    };
+    updateValues.$set.boardViews[game.p1] = boardActual.getBoardRevealFor(1);
+    updateValues.$set.boardViews[game.p2] = boardActual.getBoardRevealFor(2);
+
+    OngoingGames.update(gameId, updateValues);
 
     Meteor.users.update(game.opponentId, {
       $inc: {'game_stats.wins': 1}
