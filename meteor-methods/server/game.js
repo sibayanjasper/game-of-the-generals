@@ -11,6 +11,10 @@ Meteor.methods({
     Validations.validateGame(game);
     Validations.validateMove(fromString, destString, game.boardActual);
 
+    if (game.winner) {
+      throw new Meteor.Error();
+    }
+
     var boardActual = new BoardActual(game.boardActual);
     boardActual.performMove(fromString, destString);
 

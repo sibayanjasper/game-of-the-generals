@@ -8,7 +8,8 @@ _.extend(PlayingBoard.prototype, BoardControllerInterface, {
   },
 
   isDraggable: function(coordString) {
-    return CurrentGame.isTurnOfUser &&
+    return CurrentGame.isPlaying &&
+        CurrentGame.isTurnOfUser &&
         CurrentGame.doesPieceExistAt(coordString) &&
         CurrentGame.isPieceAtOwnedByUser(coordString);
   },
