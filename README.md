@@ -10,8 +10,12 @@ Getting Started
 - `mrt install`
 - `meteor`
 
+Improving
+=========
 
-Document structure of OngoingGames Collection
+Suggestions on how to write better code are very welcome. I'm not satisfied with the current implementation.
+
+OngoingGames Document
 =============================================
 
     {
@@ -29,7 +33,18 @@ Document structure of OngoingGames Collection
       "messages": [
         {"sender": "Arbiter", "message": "I want ice cream"},
         ...
-      ]
+      ],
+      "lastMove" : {
+		"1" : {
+		    "from" : {"x" : 3, "y" : 2},
+			"dest" : {"x" : 3, "y" : 3}
+		},
+		"2" : {
+			"from" : {"x" : 5, "y" : 5},
+			"dest" : {"x" : 5, "y" : 4}
+		}
+	  },
+	  "numMoves": 1
     }
 
 Board Actual
