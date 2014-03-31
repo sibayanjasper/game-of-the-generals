@@ -38,40 +38,6 @@ Meteor.methods({
     });
   },
 
-  resign: function(gameId) {
-    var game = OngoingGames.findOne(gameId);
-
-    Validations.validateGame(game);
-    Validations.validateResignation(game);
-
-    var boardActual = new BoardActual(game.boardActual);
-
-    var updateValues = {
-      $set: {
-        winner: game.opponentId,
-        boardViews: {}
-      },
-      $push: {
-        messages: ArbiterMessages.getPlayerResigned()
-      }
-    };
-    updateValues.$set.boardViews[game.p1] = boardActual.getBoardRevealFor(1);
-    updateValues.$set.boardViews[game.p2] = boardActual.getBoardRevealFor(2);
-
-    OngoingGames.update(gameId, updateValues);
-
-    Meteor.users.update(game.opponentId, {
-      $inc: {'game_stats.wins': 1}
-    });
-
-    Meteor.users.update(Meteor.userId(), {
-      $inc: {
-        'game_stats.resigns': 1,
-        'game_stats.loses': 1
-      }
-    });
-  },
-
   leave: function(gameId) {
     var game = OngoingGames.findOne(gameId);
 

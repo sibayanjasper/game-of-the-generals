@@ -56,11 +56,9 @@ Meteor.methods({
       var winnerId = game.getPlayerIdFromNum(winCondition.getWinnerNum());
       var loserId  = game.p1 === winnerId ? game.p2 : game.p1;
 
-      Meteor.users.update(winnerId, {
-        $inc: {'game_stats.wins': 1}
-      });
-      Meteor.users.update(loserId, {
-        $inc: {'game_stats.loses': 1}
+      updateWinLoss({
+        winnerId: winnerId,
+        loserId:  loserId
       });
     }
   },
@@ -89,5 +87,34 @@ Meteor.methods({
     }
 
     OngoingGames.update(gameId, updateValues);
+  },
+
+  resign: function(gameId) {
+    var game = OngoingGames.findOne(gameId);
+
+    Validations.validateGame(game);
+    Validations.validateResignation(game);
+
+    var boardActual = new BoardActual(game.boardActual);
+
+    var updateValues = {
+      $set: {
+        winner: game.opponentId,
+        boardViews: {}
+      },
+      $push: {
+        messages: ArbiterMessages.getPlayerResigned()
+      }
+    };
+    updateValues.$set.boardViews[game.p1] = boardActual.getBoardRevealFor(1);
+    updateValues.$set.boardViews[game.p2] = boardActual.getBoardRevealFor(2);
+
+    OngoingGames.update(gameId, updateValues);
+
+    updateWinLoss({
+      winnerId: game.opponentId,
+      loserId:  Meteor.userId(),
+      resigned: true
+    });
   }
 });
